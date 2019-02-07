@@ -7,13 +7,15 @@ def reformat_languages(languages)
   languages.each { |firstKey, firstValue|
     #[ruby/javas/pyt/java/clos/er/sca/javas], [type]
     firstValue.each { |secondKey, secondValue|
-      new_hash[secondKey] = secondValue
-      #[type][interpreted/compiled]
-      #secondValue.each { |thirdKey, thirdValue|}
-      #new_hash[secondKey]
+      if new_hash[secondKey] == nil
+        new_hash[secondKey] = secondValue
+        new_hash[secondKey][:style] = []
+        new_hash[secondKey][:style].push(firstKey)
+      else
+      new_hash[secondKey][:style].push(firstKey)
+      end
     }
   }
     
-  binding.pry
   return new_hash
 end
